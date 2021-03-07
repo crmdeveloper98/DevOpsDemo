@@ -74,6 +74,23 @@ namespace DevOpsDemo.Tests
         }
 
         [Fact]
+        public void Test_Index_GetPosts_MatchData_Title()
+        {
+            //Arrange
+            var controller = new HomeController(null,_repository);
+
+            //Act
+            var result = controller.Index();
+
+            //Assert
+            var viewResult = Assert.IsType<ViewResult>(result);
+            var model = Assert.IsAssignableFrom<List<PostViewModel>>(viewResult.ViewData.Model);
+
+            Assert.Equal("DevOps Demo Title 1", model[0].Title);
+        }
+
+
+        [Fact]
         public void Test_Index_GetPosts_MatchData_All()
         {
             //Arrange
